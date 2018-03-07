@@ -3,10 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-
+    <!--mapping với file tomcat-users.xml trong tomcat sử dụng-->
     <security-role>
         <role-name>member</role-name>
     </security-role>
+
+
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>admin</web-resource-name>
@@ -18,10 +20,17 @@
             <role-name>member</role-name>
         </auth-constraint>
     </security-constraint>
+
     <login-config>
-        <auth-method>BASIC</auth-method>
-        <realm-name>default</realm-name>
+       <!-- config login từ form-->
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <!--config trang logign thành công và trang lỗi-->
+            <form-login-page>/jsp/login.jsp</form-login-page>
+            <form-error-page>/jsp/loginError.jsp</form-error-page>
+        </form-login-config>
     </login-config>
+
     <servlet>
         <servlet-name>adminIndex</servlet-name>
         <jsp-file>/jsp/admin/index.jsp</jsp-file>
